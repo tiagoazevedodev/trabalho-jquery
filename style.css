@@ -48,7 +48,8 @@ header {
 }
 
 .product:hover {
-    transform: translateY(-0.3rem);
+    transform: scale(1.03);
+    /* Podemos usar translateX, translateY(esse fica legal tb), rotate, skew, etc. */
 }
 
 .product img {
