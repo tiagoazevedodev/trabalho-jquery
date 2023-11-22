@@ -1,14 +1,14 @@
 
 /* Common palette of colors for web sites */
 :root {
-    --primary-color: #005dbb;
+    --primary-color: rgb(98, 177, 255);
     --secondary-color: #6c757d;
     --success-color: #28a745;
     --danger-color: #dc3545;
     --warning-color: #ffc107;
     --info-color: #17a2b8;
     --light-color: #f8f9fa;
-    --dark-color: #343a40;
+    --dark-color: #435363;
 }
 body {
     margin: 0;
@@ -40,7 +40,7 @@ nav {
 footer {
     position: sticky;
     bottom: 0;
-    background-color: var(--primary-color);
+    background-color: var(--dark-color);
     color: var(--light-color);
     width: 100%;
     padding: .5rem  0;
@@ -54,6 +54,14 @@ footer {
     align-items: center;
     gap: 0.5rem;
     font-size: 1.2rem;
+}
+
+.span-quantity {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
 }
 .products {
     display: grid;
