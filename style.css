@@ -1,14 +1,14 @@
 
 /* Common palette of colors for web sites */
 :root {
-    --primary-color: rgb(98, 177, 255);
+    --primary-color: rgb(255, 165, 47);
     --secondary-color: #6c757d;
     --success-color: #28a745;
     --danger-color: #dc3545;
     --warning-color: #ffc107;
     --info-color: #17a2b8;
     --light-color: #f8f9fa;
-    --dark-color: #435363;
+    --dark-color: #222222;
 }
 body {
     margin: 0;
