@@ -12,7 +12,6 @@
 }
 body {
     margin: 0;
-
 }
 
 /* Header styles */
@@ -20,9 +19,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-color);
+    background-color: var(--dark-color);
     color: var(--light-color);
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 /* Nav styles */
@@ -30,10 +29,9 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--dark-color);
+    background-color: var(--primary-color);
     color: var(--light-color);
-    padding: 1rem;
-    
+    padding: .5rem;   
 }
 
 /*Footer styles */
@@ -43,7 +41,7 @@ footer {
     background-color: var(--dark-color);
     color: var(--light-color);
     width: 100%;
-    padding: .5rem  0;
+    padding: .1rem  0;
     text-align: center;
     margin: 0;
 }
@@ -56,6 +54,10 @@ footer {
     font-size: 1.2rem;
 }
 
+.shopping-cart .cart-icon {
+    cursor: pointer;
+}
+
 .span-quantity {
     background-color: var(--dark-color);
     color: var(--light-color);
@@ -65,7 +67,7 @@ footer {
 }
 .products {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 1rem;
     padding: 1rem;
     margin: 0 0 1rem 0;

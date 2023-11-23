@@ -5,7 +5,7 @@ $(document).ready(function() {
         preco = event.target.previousElementSibling.innerHTML; /* isso é o preço */
         preco = parseFloat(preco.slice(1, preco.length));
         nomeProduto = event.target.previousElementSibling.previousElementSibling.innerHTML; /* isso é o Nome*/
-        total += (preco); /* isso é o total dos produtos adicionados */
+        total += preco; /* isso é o total dos produtos adicionados */
         
         produtoAtual = {      /* isso é o objeto com as informações que vai ser adicionado no array */
             nome: nomeProduto,
