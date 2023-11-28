@@ -1,5 +1,21 @@
 total = 0;
 const produtosCarrinho = []
+
+function alertaCustomizado(html) {
+    alerta = $('#alertaCustomizado');
+    
+    alerta.html(html); // passa o texto para o alerta
+    alerta.addClass('mostrarAlerta'); // adiciona a classe para mostrar o alerta
+    alerta.show();
+
+    // temporizador para esconder o alerta
+    tempoMaximo(function() {
+        // Remove a classe e esconde o alerta usando jQuery
+        alerta.removeClass('mostrarAlerta');
+        alerta.hide();
+    }, 3000); // 3000 milissegundos = 3 segundos
+}
+
 $(document).ready(function() {
     $(".add-button").click(function(event) {
         preco = event.target.previousElementSibling.innerHTML; /* isso é o preço */
@@ -14,7 +30,7 @@ $(document).ready(function() {
             imagem: imagemProduto
         }
         produtosCarrinho.push(produtoAtual);
-        console.log(produtosCarrinho);
         $(".span-quantity").html(`R$${total.toFixed(2)} - ${produtosCarrinho.length} Produtos`);
+        alertaCustomizado(`<div class="alert alert-success" role="alert">`)
     })
 });
