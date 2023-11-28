@@ -9,11 +9,11 @@ function alertaCustomizado(html) {
     alerta.show();
 
     // temporizador para esconder o alerta
-    tempoMaximo(function() {
+    setTimeout(function() {
         // Remove a classe e esconde o alerta usando jQuery
         alerta.removeClass('mostrarAlerta');
         alerta.hide();
-    }, 3000); // 3000 milissegundos = 3 segundos
+    }, 10000); // 3000 milissegundos = 3 segundos
 }
 
 $(document).ready(function() {
