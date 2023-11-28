@@ -89,9 +89,13 @@ footer {
     background-color: var(--light-color);
 }
 
-.product:hover {
+.product-on-page:hover {
     transform: scale(1.02);
     /* Podemos usar translateX, translateY(esse fica legal tb), rotate, skew, etc. */
+}
+
+.product p {
+    font-size: 1.3rem;
 }
 
 .product img {
@@ -117,28 +121,32 @@ img {
     box-shadow: var(--dark-color)
 }
 
-.teste {
-    width: 400px;
-    height: 600px;
-    background-color: green;
-    position: absolute;
-    top: -200;
-    right: 0;
-}
-
 .alertaCustomizado {
     display: none;
     position: fixed;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     top: 0;
     left: 50%;
-    width: 300px;
-    height: 300px;
+    width: 600px;
+    height: 410px;
     transform: translateX(-50%);
     padding: 10px;
     background-color: var(--secondary-color);
     color: white;
     font-size: 16px;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 90px 90px rgba(0, 0, 0, 0.1);
+}
+
+.texto-alerta {
+    font-size: 20px;
+    color: var(--dark-color);
+}
+
+.botoes-alerta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
 }

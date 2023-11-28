@@ -1,6 +1,12 @@
 total = 0;
 const produtosCarrinho = []
 
+function tirarAlerta() {
+    alerta = $('#alertaCustomizado');
+    alerta.removeClass('mostrarAlerta');
+    alerta.hide();
+}
+
 function alertaCustomizado(html) {
     alerta = $('#alertaCustomizado');
     
@@ -11,9 +17,8 @@ function alertaCustomizado(html) {
     // temporizador para esconder o alerta
     setTimeout(function() {
         // Remove a classe e esconde o alerta usando jQuery
-        alerta.removeClass('mostrarAlerta');
-        alerta.hide();
-    }, 10000); // 3000 milissegundos = 3 segundos
+        tirarAlerta();
+    }, 7000); // 3000 milissegundos = 3 segundos
 }
 
 $(document).ready(function() {
@@ -31,6 +36,6 @@ $(document).ready(function() {
         }
         produtosCarrinho.push(produtoAtual);
         $(".span-quantity").html(`R$${total.toFixed(2)} - ${produtosCarrinho.length} Produtos`);
-        alertaCustomizado(`<div class="alert alert-success" role="alert">`)
+        alertaCustomizado(`<div class="product"> <img src="${imagemProduto}" alt="Imagem do produto"> <h4 class="texto-alerta">${nomeProduto}</h4> <p class="texto-alerta">R$ ${preco}</p> <div class="botoes-alerta"><button class="add-button" onclick="tirarAlerta()">  Continuar Comprando </button> <button class="add-button">  ir para o carrinho </button> </div></div>`)
     })
 });
