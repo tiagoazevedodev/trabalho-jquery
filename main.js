@@ -37,6 +37,17 @@ $(document).ready(function() {
         }
         produtosCarrinho.push(produtoAtual);
         $(".span-quantity").html(`R$${total.toFixed(2)} - ${produtosCarrinho.length} Produtos`);
-        alertaCustomizado(`<div class="product product-alert"> <img src="${imagemProduto}" alt="Imagem do produto"> <h4 class="texto-alerta">${nomeProduto}</h4> <p class="float">${floatProduto}</p> <p class="texto-alerta">R$ ${preco.toFixed(2)}</p> <div class="botoes-alerta"><button class="add-button" onclick="tirarAlerta()">  Continuar Comprando </button> <button class="add-button">  ir para o carrinho </button> </div></div>`)
+        alertaCustomizado(`
+        <div class="product product-alert">
+            <img src="${imagemProduto}" alt="Imagem do produto">
+            <h4 class="texto-alerta">${nomeProduto}</h4>
+            <p class="float">${floatProduto}</p>
+            <p class="texto-alerta">R$ ${preco.toFixed(2)}</p>
+            <div class="botoes-alerta">
+                <button class="add-button" onclick="tirarAlerta()">  Continuar Comprando </button>
+                <button class="add-button" onclick="window.open('cart.html','_self')">  ir para o carrinho </button>
+            </div>
+        </div>
+        `)
     })
 });
