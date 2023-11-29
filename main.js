@@ -18,7 +18,7 @@ function alertaCustomizado(html) {
     setTimeout(function() {
         // Remove a classe e esconde o alerta usando jQuery
         tirarAlerta();
-    }, 7000); // 3000 milissegundos = 3 segundos
+    }, 7000); // 7000 milissegundos = 7 segundos
 }
 
 $(document).ready(function() {
