@@ -13,6 +13,7 @@ function atualizarCarrinho() {
     }
     total = produtosCarrinho.reduce((total, produto) => total + produto.preco * produto.quantidade, 0);
     $(".span-quantity").html(`R$${total.toFixed(2)} - ${produtosCarrinho.length} Produtos`);
+    $(".preco-total-carrinho").html(`R$ ${total.toFixed(2)}`);
 
 }
 
@@ -70,7 +71,11 @@ function converterCarrinhoParaHtml(produtoAtual) {
         <button class="minus-cart-button" onClick="decrementarQuantidade(event)">-</button>
         <button class="add-cart-button" onClick="incrementarQuantidade(event)">+</button>
         <p class="mostrador-quantidade">${produtoAtual.quantidade}</p>
-      </div> 
+        </div> 
+        <div class="subtotal">
+            <div> Subtotal </div> 
+            R$ ${(produtoAtual.quantidade * produtoAtual.preco).toFixed(2)}
+        </div>
     </div>
   </div>`
 }
@@ -81,10 +86,18 @@ function tirarProdutos() {
     
 }
 function mostrarCarrinho() {
+    if (produtosCarrinho.length > 0) {
     tirarProdutos();
     const carrinhoHtml = produtosCarrinho.map(converterCarrinhoParaHtml).join('');
     $(".cart-products").html(carrinhoHtml);
     $(".cart").show();
+    $(".preco-total-carrinho").html(`R$ ${total.toFixed(2)}`);
+    } else {
+        alert(`Carrinho Vazio! 
+Adicione algum produto para continuar!`
+            )
+    }
+
 }
 
 function alertaCustomizado(html) {

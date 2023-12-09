@@ -14,7 +14,7 @@
     <header>
       <img src="img/logo.ico" alt="">
       <div class="shopping-cart">
-        <span class="cart-icon" title="Ir para o Carrinho"><img src="img/carrinho.png" alt=""></span>
+        <span class="cart-icon" title="Ir para o Carrinho" onclick="mostrarCarrinho()"><img src="img/carrinho.png" alt=""></span>
         <span class="span-quantity">Vazio</span>
         <div class="carrinho"></div>
       </div>
@@ -110,9 +110,14 @@
           </div>
         </div>
         <div class="cart">
+          <div class="titulo-carrinho">Carrinho</div>
           <div class="cart-products">
-            <h2 class="titulo-carrinho">Carrinho</h2>
             <!-- Produtos carrinho aqui -->
+          </div>   
+          <div class="cart-total">
+            <div class="texto-total">Total: <span class="preco-total-carrinho">R$ 3253.00</span> </div> 
+            <button class="finalizar-compra">Finalizar Compra</button>
+          </div> 
         </div>
       </main>
       <footer>

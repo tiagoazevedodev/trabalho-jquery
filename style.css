@@ -2,7 +2,7 @@
     --primary-color: rgb(255, 165, 47);
     --secondary-color: #6c757d;
     --success-color: #28a745;
-    --danger-color: #dc3545;
+    --danger-color: #ce2132;
     --warning-color: #ffc107;
     --info-color: #17a2b8;
     --light-color: #f8f9fa;
@@ -83,6 +83,45 @@ footer {
     align-items: center;
     gap: 0.5rem;
     font-size: 1.2rem;
+}
+
+.cart {
+    width: 40%;
+    margin: 0 auto;
+}
+.titulo-carrinho {
+    display: flex;
+    font-size: 2.5rem;
+    justify-content: center;
+    margin: .75rem auto 1rem;
+    padding: .5rem;
+    border-radius: 1rem;
+    background-color: var(--light-color);
+}
+
+.cart-total {
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem auto;
+    border-radius: 1rem;
+    background-color: var(--light-color);
+}
+
+button.finalizar-compra {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem .75rem;
+    margin: .5rem;
+    cursor: pointer;
+    transition: background-color 0.22s ease-in-out;
+}
+
+button.finalizar-compra:hover {
+    background-color: var(--dark-color);
 }
 
 .shopping-cart .cart-icon {
@@ -205,20 +244,14 @@ img {
     padding: 1.5rem;
     background-color: var(--light-color);
     border-radius: 1rem;
-    width: 40%;
     justify-content: center;
     align-items: center;
-    margin: 2rem auto;
-}
-
-.titulo-carrinho {
-    font-size: 2.5rem;
-    margin: 0;
     margin: 0 auto;
 }
+
 .cart-product {
     background-color: var(--dark-color);
-    border-radius: 2rem;
+    border-radius: 1rem;
     padding: 2rem;
     display: flex;
     flex-direction: row;
@@ -235,8 +268,8 @@ img {
     background-color: var(--danger-color);
     border-radius: 1rem;
     border: solid .1rem  var(--light-color);
-    height: 4rem;
-    width: 6rem;
+    height: 3.5rem;
+    width: 7rem;
     font-weight: 500;
     font-size: 18px;
     align-self: center;
@@ -307,4 +340,23 @@ img {
     align-items: center;
     justify-content: center;
     font-weight: 500;
+}
+
+.subtotal {
+    color: #000;
+    background-color: var(--light-color);
+    border-radius: 1rem;
+    padding: .5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subtotal div {
+    display: flex;
+    font-size: 1rem;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 5px 0;
 }
