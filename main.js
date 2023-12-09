@@ -111,6 +111,7 @@ $(document).ready(function() {
         imagemProduto = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.src; /* isso é a imagem*/
         quantidades[nomeProduto] = quantidades[nomeProduto] || 0;
         quantidades[nomeProduto]++;
+        
         produtoAtual = {      /* isso é o objeto com as informações que vai ser adicionado no array */
         nome: nomeProduto,
         preco: preco,
@@ -118,6 +119,7 @@ $(document).ready(function() {
         float: floatProduto,
         quantidade: quantidades[nomeProduto]
         }
+        
         if (!produtosCarrinho.some(produto => produto.nome === nomeProduto)) { /* isso é para não adicionar o mesmo produto duas vezes */
             produtosCarrinho.push(produtoAtual);
         }else {

@@ -48,18 +48,35 @@ nav {
 
 /*Footer styles */
 footer {
+    display: flex;
     position: sticky;
     bottom: 0;
     background-color: var(--primary-color);
     color: #000;
-    font-weight: 600;
     font-size: 1.2rem;
-    width: 100%;
-    padding: .1px  0;
-    text-align: center;
+    height: 3rem;
     margin: 0;
+    align-items: center;
+    justify-content: center;
 }
 
+
+.footer-flex img {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-left: 10px;
+}
+
+.footer-flex div {
+    display: flex;
+    align-items: center; 
+}
+
+.footer-flex {
+    display: flex;
+    justify-content: space-around; 
+    width: 100%;
+}
 /* Shopping cart styles */
 .shopping-cart {
     display: flex;
