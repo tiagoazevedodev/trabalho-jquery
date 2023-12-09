@@ -11,24 +11,26 @@ function atualizarCarrinho() {
     } else {
         $(".cart-products").html(carrinhoHtml);
     }
-    
+    total = produtosCarrinho.reduce((total, produto) => total + produto.preco * produto.quantidade, 0);
+    $(".span-quantity").html(`R$${total.toFixed(2)} - ${produtosCarrinho.length} Produtos`);
+
 }
 
 function incrementarQuantidade(event) {
     const nomeProduto = event.target.parentElement.parentElement.previousElementSibling.children[0].innerHTML;
     const produto = produtosCarrinho.find(produto => produto.nome === nomeProduto);
-    console.log(nomeProduto);
     if (produto) { 
         produto.quantidade++;
         atualizarCarrinho();
     }
-    console.log(produto.quantidade);
 }
 function removerProduto(event) {
     const htmlProduto = event.target.parentElement.parentElement;   // html do produto para retirar da tela ao remover
     const nomeProduto = event.target.parentElement.previousElementSibling.children[0].innerHTML   // nome do produto para retirar do array
     const produto = produtosCarrinho.find(produto => produto.nome === nomeProduto);
     if (produto) {
+        quantidades[nomeProduto] = 0;
+        produto.quantidade = 0;
         produtosCarrinho.splice(produtosCarrinho.indexOf(produto), 1);
         atualizarCarrinho();
     }
@@ -107,7 +109,6 @@ $(document).ready(function() {
         floatProduto = event.target.previousElementSibling.previousElementSibling.innerHTML; /* isso é o Float das Armas*/
         nomeProduto = event.target.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML; /* isso é o Nome*/
         imagemProduto = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.src; /* isso é a imagem*/
-        total += preco; /* isso é o total dos produtos adicionados */
         quantidades[nomeProduto] = quantidades[nomeProduto] || 0;
         quantidades[nomeProduto]++;
         produtoAtual = {      /* isso é o objeto com as informações que vai ser adicionado no array */
@@ -122,6 +123,7 @@ $(document).ready(function() {
         }else {
             produtosCarrinho.find(produto => produto.nome === nomeProduto).quantidade = quantidades[nomeProduto];
         }
+        total = produtosCarrinho.reduce((total, produto) => total + produto.preco * produto.quantidade, 0);
         $(".span-quantity").html(`R$${total.toFixed(2)} - ${produtosCarrinho.length} Produtos`);
         alertaCustomizado(`
             <div class="product product-alert">

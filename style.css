@@ -31,6 +31,7 @@ header {
 
 marquee {
     font-weight: 600;
+    color: #000;
 }
 
 /* Nav styles */
@@ -50,9 +51,11 @@ footer {
     position: sticky;
     bottom: 0;
     background-color: var(--primary-color);
-    color: var(--light-color);
+    color: #000;
+    font-weight: 600;
+    font-size: 1.2rem;
     width: 100%;
-    padding: .1rem  0;
+    padding: .1px  0;
     text-align: center;
     margin: 0;
 }
@@ -103,7 +106,7 @@ footer {
     align-items: center;
     gap: 0.5rem;
     padding: 1rem;
-    border: 1.5px solid var(--secondary-color);
+    border: 2px solid var(--secondary-color);
     border-radius: 0.5rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     transition: transform 0.22s ease-in-out;
@@ -182,7 +185,7 @@ img {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
     gap: 1.75rem;
-    padding: 1.75rem;
+    padding: 1.5rem;
     background-color: var(--light-color);
     border-radius: 1rem;
     width: 40%;
@@ -214,7 +217,7 @@ img {
     cursor: pointer;
     background-color: var(--danger-color);
     border-radius: 1rem;
-    border: none;
+    border: solid .1rem  var(--light-color);
     height: 4rem;
     width: 6rem;
     font-weight: 500;
@@ -238,7 +241,7 @@ img {
     flex-direction: column;
     gap: .5rem;
     justify-content: center;
-
+    
 }
 
 .selecionar-quantidade {
@@ -258,6 +261,7 @@ img {
     font-size: 16px;
     margin: 0;
     font-weight: 500;
+    border: solid .1rem  var(--light-color);
 }
 
 .minus-cart-button {
@@ -270,6 +274,7 @@ img {
     font-size: 16px;
     margin: 0;
     font-weight: 500;
+    border: solid .1rem  #888888;
 }
 
 .mostrador-quantidade {
