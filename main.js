@@ -148,7 +148,7 @@ $(document).ready(function() {
                 <p class="texto-alerta">R$ ${preco.toFixed(2)}</p>
                 <div class="botoes-alerta">
                     <button class="add-button" onclick="tirarAlerta()">  Continuar Comprando </button>
-                    <button class="add-button" onclick="mostrarCarrinho()">  ir para o carrinho </button>
+                    <button class="add-button" onclick="mostrarCarrinho()">  Ir para o carrinho </button>
                 </div>
             </div>
         `)

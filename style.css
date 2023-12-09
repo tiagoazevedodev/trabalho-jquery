@@ -109,6 +109,10 @@ footer {
     background-color: var(--light-color);
 }
 
+.texto-total {
+    font-weight: 600;
+}
+
 button.finalizar-compra {
     background-color: var(--primary-color);
     color: var(--light-color);
