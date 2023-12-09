@@ -5,21 +5,43 @@ quantidades = {}
 
 function atualizarCarrinho() {
     const carrinhoHtml = produtosCarrinho.map(converterCarrinhoParaHtml).join('');
-    $(".cart").html(carrinhoHtml);
+    if (produtosCarrinho.length === 0) {
+        $(".cart").hide();
+        $(".products").show();
+    } else {
+        $(".cart-products").html(carrinhoHtml);
+    }
+    
 }
 
-function incrementarQuantidade(nomeProduto) {
+function incrementarQuantidade(event) {
+    const nomeProduto = event.target.parentElement.parentElement.previousElementSibling.children[0].innerHTML;
+    const produto = produtosCarrinho.find(produto => produto.nome === nomeProduto);
+    console.log(nomeProduto);
+    if (produto) { 
+        produto.quantidade++;
+        atualizarCarrinho();
+    }
+    console.log(produto.quantidade);
+}
+function removerProduto(event) {
+    const htmlProduto = event.target.parentElement.parentElement;   // html do produto para retirar da tela ao remover
+    const nomeProduto = event.target.parentElement.previousElementSibling.children[0].innerHTML   // nome do produto para retirar do array
     const produto = produtosCarrinho.find(produto => produto.nome === nomeProduto);
     if (produto) {
-        produto.quantidade++;
+        produtosCarrinho.splice(produtosCarrinho.indexOf(produto), 1);
         atualizarCarrinho();
     }
 }
 
-function decrementarQuantidade(nomeProduto) {
+function decrementarQuantidade(event) {
+    const nomeProduto = event.target.parentElement.parentElement.previousElementSibling.children[0].innerHTML;
     const produto = produtosCarrinho.find(produto => produto.nome === nomeProduto);
     if (produto && produto.quantidade > 1) {
         produto.quantidade--;
+        atualizarCarrinho();
+    } else {
+        produtosCarrinho.splice(produtosCarrinho.indexOf(produto), 1);
         atualizarCarrinho();
     }
 }
@@ -30,15 +52,6 @@ function tirarAlerta() {
     alerta.hide();
 }
 
-function removerProduto(event) {
-    const htmlProduto = event.target.parentElement.parentElement.parentElement.innerHTML;
-    const nomeProduto = htmlProduto.chieldren[1].chieldren[0].innerHTML;
-    const produto = produtosCarrinho.find(produto => produto.nome === nomeProduto);
-    if (produto) {
-        produtosCarrinho.splice(produtosCarrinho.indexOf(produto), 1);
-        atualizarCarrinho();
-    }
-}
 
 function converterCarrinhoParaHtml(produtoAtual) {
     return `
@@ -50,10 +63,10 @@ function converterCarrinhoParaHtml(produtoAtual) {
       <p>R$${produtoAtual.preco}</p>
     </div>
     <div class="buttons">
-      <button class="remove-button" onClick="removerProduto()">Remove</button>
+      <button class="remove-button" onClick="removerProduto(event)">Remove</button>
       <div class="selecionar-quantidade">
-        <button class="minus-cart-button" onClick="decrementarQuantidade()">-</button>
-        <button class="add-cart-button" onClick="incrementarQuantidade()">+</button>
+        <button class="minus-cart-button" onClick="decrementarQuantidade(event)">-</button>
+        <button class="add-cart-button" onClick="incrementarQuantidade(event)">+</button>
         <p class="mostrador-quantidade">${produtoAtual.quantidade}</p>
       </div> 
     </div>
@@ -106,8 +119,9 @@ $(document).ready(function() {
         }
         if (!produtosCarrinho.some(produto => produto.nome === nomeProduto)) { /* isso é para não adicionar o mesmo produto duas vezes */
             produtosCarrinho.push(produtoAtual);
+        }else {
+            produtosCarrinho.find(produto => produto.nome === nomeProduto).quantidade = quantidades[nomeProduto];
         }
-        console.log(produtosCarrinho);
         $(".span-quantity").html(`R$${total.toFixed(2)} - ${produtosCarrinho.length} Produtos`);
         alertaCustomizado(`
             <div class="product product-alert">
