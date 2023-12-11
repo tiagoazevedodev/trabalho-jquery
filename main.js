@@ -252,12 +252,17 @@ $(document).ready(function() {
                     $(".botoes-pagamento").html(`
                     <button class="botao-pagamento-qrcode botao-pix buxa">Finalizar</button>
                     `)
+                    $(".botao-pagamento-qrcode").click(function(event) {
+                        alert("Compra finalizada com sucesso!");
+                        $(".titulo-pagamento").html("Pagamento realizado com sucesso!");
+                        $(".inputs_pix").html(`
+                        <img src="./logos/check.svg" class="qrcode check" alt="qr code">
+                        `)
+                        $(".botoes-pagamento").hide();
+                })
                 } else {
                     alert("Preencha todos os campos obrigatórios!");
-                }
-            }
-            )
-        }
+                }}
         )
         
         $(".botao-seletor-credito").click(function(event) {
@@ -321,3 +326,5 @@ $(document).ready(function() {
         )
     })
 })
+}
+)
