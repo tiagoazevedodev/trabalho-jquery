@@ -5,7 +5,8 @@ const logosCartao = {
     "Visa": "./logos/visa.svg",
     "Mastercard": "./logos/mastercard.svg",
     "American Express": "./logos/amex.svg",
-    "Discover": "./logos/discover.svg"
+    "Discover": "./logos/discover.svg",
+    "unknown": "./logos/default.png"
 }
 
 function validarFomularioPix() {
@@ -19,29 +20,22 @@ function validarFomularioPix() {
     }
 }
 
-function validarFomularioCredito() {
+function validarFormularioCredito() {
     const numeroCartao = document.getElementById("numeroCartao").value;
     const nomeTitular = document.getElementById("nomeTitular").value;
     const dataValidade = document.getElementById("dataValidade").value;
     const codigoSeguranca = document.getElementById("codigoSeguranca").value;
-
-    if (numeroCartao === "" || nomeTitular === "" || dataValidade === "" || codigoSeguranca === "") {
-        alert("Preencha todos os campos obrigatórios!");
+    console.log(numeroCartao, nomeTitular, dataValidade, codigoSeguranca);
+    if (numeroCartao === "" || numeroCartao.length < 16 || nomeTitular === "" || dataValidade === "" || dataValidade.length < 4|| codigoSeguranca === "" || codigoSeguranca.length < 3) {
+        alert("Preencha todos os campos corretamente!");
         return false;
+    } else {
+        return true
     }
 
-    const cardBrand = detectCardBrand(numeroCartao);
-    if (cardBrand === "unknown") {
-        alert("Número de cartão inválido!");
-        return false;
-    }
-
-    alert("Bandeira do cartão: " + cardBrand);
-    return true;
 }
 
 function detectCardBrand(numeroCartao) {
-    // Regular expressions for different card brands
     const visaRegex = /^4[0-9]{12}$/;
     const mastercardRegex = /^5[1-5][0-9]{14}$/;
     const amexRegex = /^3[47][0-9]{13}$/;
@@ -249,12 +243,14 @@ $(document).ready(function() {
             `)
             $(".botao-pagamento-qrcode").click(function(event) {
                 resultado = validarFomularioPix();
-                alert(resultado)
                 if (resultado) {
                     $(".titulo-pagamento").html("QR Code");
                     $(".botao-pagamento-qrcode").hide();
                     $(".inputs_pix").html(`
                     <img src="./img/qrcode-render.png" class="qrcode" alt="qr code">
+                    `)
+                    $(".botoes-pagamento").html(`
+                    <button class="botao-pagamento-qrcode botao-pix buxa">Finalizar</button>
                     `)
                 } else {
                     alert("Preencha todos os campos obrigatórios!");
@@ -263,27 +259,28 @@ $(document).ready(function() {
             )
         }
         )
-
+        
         $(".botao-seletor-credito").click(function(event) {
-
+            
             parc_1x = total.toFixed(2);
             parc_2x = (total/2).toFixed(2);
             parc_3x = ((total*1.03)/3).toFixed(2);
             parc_4x = ((total*1.04)/4).toFixed(2);
             parc_5x = ((total*1.05)/5).toFixed(2);
-
+            
+            
             $(".receptor-finalizarCompra").html(`
             <div class="pagamento-cartao">
                 <span class="titulo-pagamento">Pagamento via Cartão de Crédito</span>
                 <div class="inputs_cartao">
                     <div class="campo-credito"><span>Nome: </span><input id="nomeTitular" type="text" class="input-pix"></div>
-                    <div class="campo-credito"><span>Número do Cartão: </span><input id="numeroCartao" placeholder="xxxx-xxxx-xxxx-xxxx" type="text" class="input-pix" maxlength="16" minlength="16"></div>
+                    <div class="campo-credito"><span>Número do Cartão: </span><input id="numeroCartao" placeholder="xxxx-xxxx-xxxx-xxxx" type="text" class="input-pix" maxlength="16" minlength="16"><div class="bandeira"></div></div>
                     <div class="campo-credito"><span>Validade: </span><input id="dataValidade" type="text" placeholder="mm/aa" class="input-pix" maxlength="5" minlength="5"></div>
                     <div class="campo-credito"><span>CVV: </span><input id="codigoSeguranca" type="text" class="input-pix" maxlength="3" minlength="3"></div>
                 </div>
                 <div>
                     <span><span class="parcelamento">Parcelamento:</span> 
-                        <select>
+                        <select class="selectador">
                             <option>1x sem juros - R$ ${parc_1x}</option>
                             <option>2x sem juros - R$ ${parc_2x}</option>
                             <option>3x com juros - R$ ${parc_3x}</option>
@@ -296,7 +293,30 @@ $(document).ready(function() {
                     <button class="botao-pagamento">Finalizar Pagamento</button>
                 </div>
             </div>
-            `)
+            `
+            )
+            $("#numeroCartao").change(function(event) {
+                numero = event.target.value;
+                resultado = detectCardBrand(numero);
+                console.log(resultado);
+                $(".bandeira").html(`
+                    <img src="${logosCartao[resultado]}" class="bandeira-cartao" alt="qr code">
+                `)  
+            })
+            $(".botao-pagamento").click(function(event) {
+                resultado = validarFormularioCredito();
+                if (resultado) {
+                    $(".titulo-pagamento").html("Pagamento realizado com sucesso!");
+                    $(".parcelamento").hide();
+                    $(".inputs_cartao").html(`
+                    <img src="./logos/check.svg" class="qrcode check" alt="qr code">
+                    `)
+                    $(".botao-pagamento").hide();
+                    escolhido = $(".selectador").val();
+                    $(".selectador").hide();
+                    $(".parcelamento").html(`Pagamento realizado em ${escolhido}`);
+                }
+            })
         }
         )
     })
