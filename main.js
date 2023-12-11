@@ -3,6 +3,13 @@ total = 0;
 const produtosCarrinho = []
 quantidades = {}
 
+function finalizarCompra(){
+    $(".cart").hide();
+    $(".products").hide();
+    $(".finalizar-compra").show();
+
+}
+
 function atualizarCarrinho() {
     const carrinhoHtml = produtosCarrinho.map(converterCarrinhoParaHtml).join('');
     if (produtosCarrinho.length === 0) {
@@ -152,5 +159,24 @@ $(document).ready(function() {
                 </div>
             </div>
         `)
+    })
+    $(".finalizar-compra").click(function(event) {
+        $(".receptor-finalizarCompra").html(`
+        <div class="finalizarCompra">
+            <!-- Escolha de pagamento aqui -->
+            <span class="titulo-seletor-pagamento">Escolha a forma de pagamento</span>
+            <div class="botoes-seletor">
+            <button class="botao-seletor-pix">Pix</button>
+            <button class="botao-seletor-credito">Cartão de crédito</button>
+            </div>
+        </div>`)
+        $(".cart").hide();
+        
+        
+        // Pix
+        $(".botao-seletor-pix").click(function(event) {
+            $(".receptor-finalizarCompra").html(`
+            `)
+        })
     })
 });
