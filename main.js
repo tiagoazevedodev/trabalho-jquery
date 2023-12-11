@@ -1,8 +1,64 @@
-
 total = 0;
 const produtosCarrinho = []
 quantidades = {}
+const logosCartao = {
+    "Visa": "./logos/visa.svg",
+    "Mastercard": "./logos/mastercard.svg",
+    "American Express": "./logos/amex.svg",
+    "Discover": "./logos/discover.svg"
+}
 
+function validarFomularioPix() {
+    const nome = document.getElementById("nomePix").value;
+    const cpf = document.getElementById("cpfPix").value;
+
+    if (nome === "" || cpf === "" || cpf.length < 11) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function validarFomularioCredito() {
+    const numeroCartao = document.getElementById("numeroCartao").value;
+    const nomeTitular = document.getElementById("nomeTitular").value;
+    const dataValidade = document.getElementById("dataValidade").value;
+    const codigoSeguranca = document.getElementById("codigoSeguranca").value;
+
+    if (numeroCartao === "" || nomeTitular === "" || dataValidade === "" || codigoSeguranca === "") {
+        alert("Preencha todos os campos obrigatórios!");
+        return false;
+    }
+
+    const cardBrand = detectCardBrand(numeroCartao);
+    if (cardBrand === "unknown") {
+        alert("Número de cartão inválido!");
+        return false;
+    }
+
+    alert("Bandeira do cartão: " + cardBrand);
+    return true;
+}
+
+function detectCardBrand(numeroCartao) {
+    // Regular expressions for different card brands
+    const visaRegex = /^4[0-9]{12}$/;
+    const mastercardRegex = /^5[1-5][0-9]{14}$/;
+    const amexRegex = /^3[47][0-9]{13}$/;
+    const discoverRegex = /^6(?:011|5[0-9]{2})[0-9]{12}$/;
+
+    if (visaRegex.test(numeroCartao)) {
+        return "Visa";
+    } else if (mastercardRegex.test(numeroCartao)) {
+        return "Mastercard";
+    } else if (amexRegex.test(numeroCartao)) {
+        return "American Express";
+    } else if (discoverRegex.test(numeroCartao)) {
+        return "Discover";
+    } else {
+        return "unknown";
+    }
+}
 function finalizarCompra(){
     $(".cart").hide();
     $(".products").hide();
@@ -180,35 +236,29 @@ $(document).ready(function() {
             <div class="pagamento-pix">
                 <span class="titulo-pagamento">Pagamento via Pix</span>
                 <div class="inputs_pix">
-                    <div><span>Nome: </span><input type="text" class="input-pix"></div>
-                    <div><span>CPF: </span><input type="text" class="input-pix" maxlength="14" minlength="11"></div>
+                    <div class="campo">
+                        <span>Nome: </span>
+                        <input type="text" id="nomePix" class="input-pix">
+                    </div>
+                    <div class="campo"><span>CPF: </span><input type="text" id="cpfPix" class="input-pix" maxlength="11" minlength="11"></div>
                 </div>
                 <div class="botoes-pagamento">
-                    <button class="botao-pagamento-codigo">Copiar código</button>
-                    <button class="botao-pagamento-qrcode">Gerar QR Code</button>
+                    <button class="botao-pagamento-qrcode botao-pix">Gerar QR Code</button>
                 </div>
             </div>
             `)
-            $(".botao-pagamento-codigo").click(function(event) {
-                $(".pagamento-pix").html(`
-                <div>
-                    CODIGO
-                </div>
-                <div class="botoes-pagamento">
-                    <button class="botao-pagamento">Finalizar Pagamento</button>
-                </div>
-                `)
-            }
-            )
             $(".botao-pagamento-qrcode").click(function(event) {
-                $(".pagamento-pix").html(`
-                <div>
-                    QR CODE
-                </div>
-                <div class="botoes-pagamento">
-                    <button class="botao-pagamento">Finalizar Pagamento</button>
-                </div>
-                `)
+                resultado = validarFomularioPix();
+                alert(resultado)
+                if (resultado) {
+                    $(".titulo-pagamento").html("QR Code");
+                    $(".botao-pagamento-qrcode").hide();
+                    $(".inputs_pix").html(`
+                    <img src="./img/qrcode-render.png" class="qrcode" alt="qr code">
+                    `)
+                } else {
+                    alert("Preencha todos os campos obrigatórios!");
+                }
             }
             )
         }
@@ -226,20 +276,21 @@ $(document).ready(function() {
             <div class="pagamento-cartao">
                 <span class="titulo-pagamento">Pagamento via Cartão de Crédito</span>
                 <div class="inputs_cartao">
-                    <div><span>Nome: </span><input type="text" class="input-pix"></div>
-                    <div><span>Número do Cartão: </span><input type="text" class="input-pix" maxlength="20" minlength="16"></div>
-                    <div><span>Validade: </span><input type="text" class="input-pix" maxlength="5" minlength="5"></div>
-                    <div><span>CVV: </span><input type="text" class="input-pix" maxlength="3" minlength="3"></div>
-                    <div>
-                        <span>Parcelamento: 
-                            <select>
-                                <option>1x sem juros - R$ ${parc_1x}</option>
-                                <option>2x sem juros - R$ ${parc_2x}</option>
-                                <option>3x com juros - R$ ${parc_3x}</option>
-                                <option>4x com juros - R$ ${parc_4x}</option>
-                                <option>5x com juros - R$ ${parc_5x}</option>
-                            </select>
-                        <span></div>
+                    <div class="campo-credito"><span>Nome: </span><input id="nomeTitular" type="text" class="input-pix"></div>
+                    <div class="campo-credito"><span>Número do Cartão: </span><input id="numeroCartao" placeholder="xxxx-xxxx-xxxx-xxxx" type="text" class="input-pix" maxlength="16" minlength="16"></div>
+                    <div class="campo-credito"><span>Validade: </span><input id="dataValidade" type="text" placeholder="mm/aa" class="input-pix" maxlength="5" minlength="5"></div>
+                    <div class="campo-credito"><span>CVV: </span><input id="codigoSeguranca" type="text" class="input-pix" maxlength="3" minlength="3"></div>
+                </div>
+                <div>
+                    <span><span class="parcelamento">Parcelamento:</span> 
+                        <select>
+                            <option>1x sem juros - R$ ${parc_1x}</option>
+                            <option>2x sem juros - R$ ${parc_2x}</option>
+                            <option>3x com juros - R$ ${parc_3x}</option>
+                            <option>4x com juros - R$ ${parc_4x}</option>
+                            <option>5x com juros - R$ ${parc_5x}</option>
+                        </select>
+                    <span>
                 </div>
                 <div class="botoes-pagamento">
                     <button class="botao-pagamento">Finalizar Pagamento</button>
@@ -248,7 +299,5 @@ $(document).ready(function() {
             `)
         }
         )
-
-
     })
 })

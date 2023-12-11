@@ -428,24 +428,167 @@ img {
     align-items: center;
     justify-content: center;
 }
-
+/* Pagamento pix */
 .pagamento-pix {
-    background-color: var(--light-color);
+    background-color: #414040;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin: 3rem auto;
-    width: 40%;
+    width: 35%;
+    height: fit-content;
     border-radius: 2rem;
-    padding: 2rem 0;
+    padding: 2rem;
+    gap: 1rem;
+    border: var(--primary-color) solid 1px;
 }
+
+.titulo-pagamento {
+    display: flex;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000;
+    margin: 1rem 0;
+}
+
+.inputs-pix {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo {
+    background-color: var(--light-color);
+    margin: 0 1rem;
+    border-radius: 10px;
+    border: var(--primary-color) solid 1px;
+    width: 250px;
+    height: fit-content;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.campo span {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+    font-weight: 600;
+    align-items: center;
+} 
+
+.campo input {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 10rem;
+    height: 1.5rem;
+}
+
+.botao-pix {
+    background-color: var(--primary-color);
+    color: #000;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: background-color 0.22s ease-in-out;
+    
+}
+
+.qrcode {
+    width: 250px;
+}
+
+/* Pagamento cartão */
 .pagamento-cartao {
     background-color: var(--light-color);
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 3rem auto;
-    width: 40%;
+    margin: 5rem auto 0 auto;
+    width: 50%;
+    height: fit-content;
     border-radius: 2rem;
     padding: 2rem 0;
+}
+
+.inputs-cartao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.campo-credito {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: px;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    margin: 1rem 0;
+    border-radius: 1.5rem;
+    color: #000;
+    font-weight: 700;
+    font-size: 1.4rem;
+    justify-content: space-between;
+}
+
+.campo-credito input {
+    border: none;
+    display: flex;
+    border-radius: 10px;
+    background-color: var(--light-color);
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 15rem;
+    height: 1.8rem;
+    border: solid 2px #000;
+}
+
+select {
+    background-color: var(--light-color);
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    border: solid #000 2px;
+    border-radius: 0.5rem;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: background-color 0.22s ease-in-out;
+} 
+
+
+.parcelamento {
+    background-color: var(--light-color);
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    border: solid #000 2px;
+    border-radius: 0.5rem;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+} 
+
+.botao-pagamento {
+    background-color: var(--primary-color);
+    color: #000;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    padding: .75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.22s ease-in-out;
 }
