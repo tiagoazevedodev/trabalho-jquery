@@ -42,10 +42,10 @@ function validarFormularioCredito() {
 }
 
 function detectCardBrand(numeroCartao) {
-    const visaRegex = /^4[0-9]{12}$/;
-    const mastercardRegex = /^5[1-5][0-9]{14}$/;
-    const amexRegex = /^3[47][0-9]{13}$/;
-    const discoverRegex = /^6(?:011|5[0-9]{2})[0-9]{12}$/;
+    const visaRegex = /^4[0-9]{0,15}$/;
+    const mastercardRegex = /^5[1-5][0-9]{0,14}$/;
+    const amexRegex = /^3[47][0-9]{0,13}$/;
+    const discoverRegex = /^6(?:011|5[0-9]{0,2})[0-9]{0,12}$/;
 
     if (visaRegex.test(numeroCartao)) {
         return "Visa";
@@ -59,6 +59,7 @@ function detectCardBrand(numeroCartao) {
         return "unknown";
     }
 }
+
 function finalizarCompra(){
     $(".cart").hide();
     $(".products").hide();
