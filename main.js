@@ -241,7 +241,7 @@ $(document).ready(function() {
                         <span>Nome: </span>
                         <input type="text" id="nomePix" class="input-pix">
                     </div>
-                    <div class="campo"><span>CPF: </span><input type="text" id="cpfPix" class="input-pix" maxlength="11" minlength="11"></div>
+                    <div class="campo"><span>CPF: </span><input type="number" id="cpfPix" class="input-pix" maxlength="11" minlength="11"></div>
                 </div>
                 <div class="botoes-pagamento">
                     <button class="botao-pagamento-qrcode botao-pix">Gerar QR Code</button>
@@ -279,9 +279,9 @@ $(document).ready(function() {
                 <span class="titulo-pagamento">Pagamento via Cartão de Crédito</span>
                 <div class="inputs_cartao">
                     <div class="campo-credito"><span>Nome: </span><input id="nomeTitular" type="text" class="input-pix"></div>
-                    <div class="campo-credito"><span>Número do Cartão: </span><input id="numeroCartao" placeholder="xxxx-xxxx-xxxx-xxxx" type="text" class="input-pix" maxlength="16" minlength="16"><div class="bandeira"></div></div>
+                    <div class="campo-credito"><span>Número do Cartão: </span><input id="numeroCartao" placeholder="xxxx-xxxx-xxxx-xxxx" type="number" class="input-pix" maxlength="16" minlength="16"><div class="bandeira"></div></div>
                     <div class="campo-credito"><span>Validade: </span><input id="dataValidade" type="text" placeholder="mm/aa" class="input-pix" maxlength="5" minlength="5"></div>
-                    <div class="campo-credito"><span>CVV: </span><input id="codigoSeguranca" type="text" class="input-pix" maxlength="3" minlength="3"></div>
+                    <div class="campo-credito"><span>CVV: </span><input id="codigoSeguranca" type="number" class="input-pix" maxlength="3" minlength="3"></div>
                 </div>
                 <div>
                     <span><span class="parcelamento">Parcelamento:</span> 
