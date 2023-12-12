@@ -8,7 +8,13 @@ const logosCartao = {
     "Discover": "./logos/discover.svg",
     "unknown": "./logos/default.png"
 }
-
+function finalizarPix() {
+        $(".titulo-pagamento").html("Pagamento realizado com sucesso!");
+        $(".inputs_pix").html(`
+        <img src="./logos/check.svg" class="qrcode check" alt="qr code">
+        `)
+        $(".botoes-pagamento").html(``)
+}
 function validarFomularioPix() {
     const nome = document.getElementById("nomePix").value;
     const cpf = document.getElementById("cpfPix").value;
@@ -250,15 +256,13 @@ $(document).ready(function() {
                     <img src="./img/qrcode-render.png" class="qrcode" alt="qr code">
                     `)
                     $(".botoes-pagamento").html(`
-                    <button class="botao-pagamento-qrcode botao-pix buxa">Finalizar</button>
+                    <button id="finalizar-pix" class="finalizar-pix" onclick="finalizarPix()">Finalizar</button>
                     `)
                 } else {
                     alert("Preencha todos os campos obrigatórios!");
                 }
-            }
-            )
-        }
-        )
+            })
+        })
         
         $(".botao-seletor-credito").click(function(event) {
             
@@ -295,7 +299,7 @@ $(document).ready(function() {
             </div>
             `
             )
-            $("#numeroCartao").change(function(event) {
+            $("#numeroCartao").keyup(function(event) {
                 numero = event.target.value;
                 resultado = detectCardBrand(numero);
                 console.log(resultado);
@@ -317,7 +321,6 @@ $(document).ready(function() {
                     $(".parcelamento").html(`Pagamento realizado em ${escolhido}`);
                 }
             })
-        }
-        )
+        })
     })
 })
