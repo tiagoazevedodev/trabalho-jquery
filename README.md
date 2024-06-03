@@ -1,4 +1,4 @@
-# Projeto de Marketplace de Skins para CS:GO
+# Projeto de Marketplace de Skins de CS:GO
 
 Bem-vindo ao repositório do projeto de Sistema para Internet. Este projeto é um marketplace simplificado para compra de skins do jogo Counter-Strike: Global Offensive (CS:GO), focado na simplicidade e sem a necessidade de backend, banco de dados, ou cadastro de usuários.
 
